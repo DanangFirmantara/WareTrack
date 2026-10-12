@@ -17,25 +17,37 @@ Lalu buka `http://localhost:5173`.
 | Fitur | Penjelasan |
 |---|---|
 | **Kamera isometrik** | Kamera orthographic supaya tampilannya seperti game. Geser dengan drag, putar dengan klik kanan, zoom dengan scroll |
+| **3 zona bernomor** | ① Warehouse WH-01 (asal barang) → ② Jl. Raya Logistik (jalur box car) → ③ Toko Kelontong (tujuan) |
 | **Gudang 3D** | Dinding, atap biru miring, dan 3 pintu dock |
+| **Toko kelontong** | Bangunan kecil dengan papan nama, kanopi belang merah-putih, dan rak barang di teras |
 | **Forklift bergerak sendiri** | Berputar di satu rute, garpunya naik turun, label `FL-01` ikut bergerak |
-| **Truk** | Datang dari jalan, parkir di dock sekitar 10 detik, lalu pergi lagi (berulang tiap 20 detik) |
+| **Box car `TRK-2051`** | Siklus pengiriman berulang (±46 detik): dimuat di dock gudang (6 dtk) → jalan ke toko (14 dtk) → dibongkar (6 dtk) → mundur keluar, pulang lewat lajur sebaliknya, lalu mundur masuk ke dock |
+| **Shipment tracker** | Kartu kiri bawah, 3 langkah (Warehouse → Di jalan → Toko) yang ikut bergerak sesuai fase truk |
 | **Palet, pin lokasi, kontainer, pohon** | Pelengkap suasana |
-| **UI overlay** | Top bar, 3 kartu KPI, dan panel detail yang muncul dari kanan saat forklift, truk, palet `PAL-1026` atau gudang diklik |
+| **UI overlay** | Top bar (search, pilih site, jam live, profil), 3 kartu KPI, dan panel detail yang muncul dari kanan saat forklift, truk, palet `PAL-1026`, gudang, jalan, atau toko diklik. Status truk & toko di panel ikut fase pengiriman |
+| **Login** | Halaman masuk sederhana; sementara kredensial apa pun diterima asal tidak kosong. Session disimpan di `sessionStorage` |
 
 ## Struktur file
 
 ```
 src/
-├── data.ts            ← data contoh (nanti diganti dengan API)
-├── App.tsx            ← menggabungkan scene 3D + UI
+├── data.ts            ← data contoh + fase pengiriman (nanti diganti dengan API)
+├── App.tsx            ← login gate, state global, menggabungkan scene 3D + UI
+├── index.css          ← semua styling
 ├── scene/
-│   ├── Scene.tsx      ← Canvas, kamera, lampu, tanah, posisi objek
-│   ├── Warehouse.tsx
-│   ├── Vehicles.tsx   ← forklift & truk + animasinya (useFrame)
+│   ├── Scene.tsx      ← Canvas, kamera, lampu, tanah, jalan, posisi objek
+│   ├── Warehouse.tsx  ← gedung gudang
+│   ├── Store.tsx      ← toko kelontong tujuan
+│   ├── Vehicles.tsx   ← forklift & box car + animasinya (useFrame)
 │   └── Primitives.tsx ← palet, pohon, pin, kontainer
-└── ui/Overlay.tsx     ← KPI cards & panel detail (HTML biasa)
+└── ui/
+    ├── TopBar.tsx     ← header: search, site, jam live, profil/logout
+    ├── Login.tsx      ← halaman login
+    ├── Overlay.tsx    ← KPI cards & panel detail
+    └── Tracker.tsx    ← shipment tracker 3 langkah
 ```
+
+Ringkasan fungsi tiap file yang lebih detail ada di [`project-map.md`](project-map.md).
 
 ## Konsep penting
 

@@ -17,6 +17,7 @@ Semua data masih mock (`src/data.ts`), belum ada backend.
 
 ```
 hello-web-three/
+├── LICENSE                 MIT
 ├── index.html              Entry HTML Vite (title "WareTrack 3D", mount #root)
 ├── package.json            Scripts: dev, build (tsc -b && vite build), lint (oxlint), preview
 ├── vite.config.ts          Config Vite + plugin React
@@ -25,7 +26,7 @@ hello-web-three/
 ├── public/                 Aset statis (favicon.svg, icons.svg)
 ├── docs/
 │   ├── project-map.md      ← file ini
-│   └── panduan-3d.md       Panduan konsep 3D, cara run, ide pengembangan
+│   └── panduan-3d.md       Panduan: cara run, daftar fitur, konsep 3D, ide pengembangan
 └── src/
     ├── main.tsx            Bootstrap React (createRoot + StrictMode), import index.css
     ├── App.tsx             Root: auth gate + state global + layout

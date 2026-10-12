@@ -53,3 +53,7 @@ Konsep 3D dan rencana pengembangan ada di [`docs/panduan-3d.md`](docs/panduan-3d
 ## Status
 
 Prototype — semua data masih mock dan login menerima kredensial apa pun.
+
+## Lisensi
+
+[MIT](LICENSE)
