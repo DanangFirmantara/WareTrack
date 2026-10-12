@@ -1,0 +1,6 @@
+# Normalisasi line ending (penting karena dikembangkan di Windows)
+* text=auto eol=lf
+*.svg text eol=lf
+*.png binary
+*.jpg binary
+*.glb binary
